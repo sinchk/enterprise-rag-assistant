@@ -1,0 +1,26 @@
+# Keep the build context small and never ship secrets or local state.
+.git
+.gitignore
+.venv
+.env
+*.md
+!README.md
+!LICENSE
+
+# Local state that must never be baked into an image
+chroma_db/
+data/uploads/
+data/chroma/
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+tests/
+evaluation/report*.json
+docker-compose.yml
+.dockerignore
+Dockerfile

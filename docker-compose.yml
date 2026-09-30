@@ -1,0 +1,55 @@
+# Enterprise Document RAG Assistant
+#
+#   docker compose up --build
+#   curl localhost:8000/health
+#   curl -F "file=@data/sample/northwind_lending_policy.pdf" localhost:8000/ingest
+#   curl -H 'Content-Type: application/json' \
+#        -d '{"question":"What is the maximum loan tenure?"}' localhost:8000/ask
+#
+# Copy .env.example to .env to configure the LLM provider. With no API key the
+# service still runs using the non-LLM extractive baseline.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: enterprise-rag-assistant:latest
+    container_name: rag-api
+    ports:
+      - "${RAG_API_PORT:-8000}:8000"
+    environment:
+      # LLM provider: "openai" for grounded generation, "extractive" to run
+      # without an API key using the deterministic baseline.
+      LLM_PROVIDER: "${LLM_PROVIDER:-extractive}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENAI_BASE_URL: "${OPENAI_BASE_URL:-}"
+      LLM_MODEL: "${LLM_MODEL:-gpt-4o-mini}"
+      EMBEDDING_MODEL: "${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}"
+      EMBEDDING_DEVICE: "${EMBEDDING_DEVICE:-cpu}"
+      CHUNK_SIZE: "${CHUNK_SIZE:-600}"
+      CHUNK_OVERLAP: "${CHUNK_OVERLAP:-80}"
+      TOP_K: "${TOP_K:-4}"
+      SIMILARITY_THRESHOLD: "${SIMILARITY_THRESHOLD:-}"
+      CHROMA_COLLECTION: "${CHROMA_COLLECTION:-enterprise_documents}"
+      MAX_UPLOAD_SIZE_MB: "${MAX_UPLOAD_SIZE_MB:-25}"
+      LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+    volumes:
+      # Named volume keeps the vector store across rebuilds.
+      - rag-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # The embedding model is loaded per worker, so the container is capped to
+    # keep a laptop usable. Remove for a dedicated host.
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+
+volumes:
+  rag-data:

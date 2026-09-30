@@ -1,0 +1,134 @@
+{
+  "document": "northwind_lending_policy.pdf",
+  "description": "Evaluation set for the synthetic Northwind Capital lending policy. expected_page refers to the page numbering of data/sample/northwind_lending_policy.pdf. answerable=false marks questions whose answer is deliberately absent from the document, used to check that the system abstains instead of guessing.",
+  "questions": [
+    {
+      "id": "q01",
+      "question": "What is the maximum loan tenure?",
+      "expected_answer": "20 years",
+      "expected_keywords": ["maximum", "loan", "tenure", "20", "years"],
+      "expected_page": 2,
+      "answerable": true
+    },
+    {
+      "id": "q02",
+      "question": "What is the minimum age for a loan applicant?",
+      "expected_answer": "21 years",
+      "expected_keywords": ["minimum", "applicant", "age", "21", "years"],
+      "expected_page": 2,
+      "answerable": true
+    },
+    {
+      "id": "q03",
+      "question": "What is the maximum loan amount that can be approved?",
+      "expected_answer": "250,000 units",
+      "expected_keywords": ["maximum", "loan", "amount", "250,000", "units"],
+      "expected_page": 2,
+      "answerable": true
+    },
+    {
+      "id": "q04",
+      "question": "What is the minimum monthly net income required for an applicant?",
+      "expected_answer": "2,500 units",
+      "expected_keywords": ["minimum", "monthly", "net", "income", "2,500"],
+      "expected_page": 2,
+      "answerable": true
+    },
+    {
+      "id": "q05",
+      "question": "Which documents are required to submit with a new loan application?",
+      "expected_answer": "Proof of identity, proof of address, proof of income, proof of employment, bank statements and a signed credit agreement with direct debit mandate",
+      "expected_keywords": ["identity", "address", "income", "employment", "bank", "statements"],
+      "expected_page": 3,
+      "answerable": true
+    },
+    {
+      "id": "q06",
+      "question": "How long is an incomplete application held before it is closed?",
+      "expected_answer": "10 business days",
+      "expected_keywords": ["incomplete", "10", "business", "days"],
+      "expected_page": 3,
+      "answerable": true
+    },
+    {
+      "id": "q07",
+      "question": "What is the standard annual percentage rate for unsecured loans?",
+      "expected_answer": "11.9 percent",
+      "expected_keywords": ["11.9", "percent", "unsecured"],
+      "expected_page": 4,
+      "answerable": true
+    },
+    {
+      "id": "q08",
+      "question": "Is there a penalty for repaying a loan early?",
+      "expected_answer": "No, prepayment is permitted at any time without penalty",
+      "expected_keywords": ["prepayment", "without", "penalty"],
+      "expected_page": 4,
+      "answerable": true
+    },
+    {
+      "id": "q09",
+      "question": "What processing fee is charged and when?",
+      "expected_answer": "A one-off fee of 1.5 percent of the approved principal, charged at disbursement",
+      "expected_keywords": ["processing", "fee", "1.5", "percent", "disbursement"],
+      "expected_page": 4,
+      "answerable": true
+    },
+    {
+      "id": "q10",
+      "question": "What insurance is required for a loan secured against a property?",
+      "expected_answer": "A property insurance policy for the full duration of the loan, naming the lender as loss payee",
+      "expected_keywords": ["property", "insurance", "policy", "loss", "payee"],
+      "expected_page": 5,
+      "answerable": true
+    },
+    {
+      "id": "q11",
+      "question": "Within how many business days is a credit decision communicated to the applicant?",
+      "expected_answer": "3 business days of receiving a complete application",
+      "expected_keywords": ["credit", "decision", "3", "business", "days"],
+      "expected_page": 6,
+      "answerable": true
+    },
+    {
+      "id": "q12",
+      "question": "How long are loan records retained after the final settlement?",
+      "expected_answer": "7 years from the date of final settlement",
+      "expected_keywords": ["retained", "7", "years"],
+      "expected_page": 7,
+      "answerable": true
+    },
+    {
+      "id": "q13",
+      "question": "Can a customer request a copy of the personal data held about them?",
+      "expected_answer": "Yes, free of charge, at any time",
+      "expected_keywords": ["copy", "personal", "data", "free", "charge"],
+      "expected_page": 7,
+      "answerable": true
+    },
+    {
+      "id": "q14",
+      "question": "How many retail branches does Northwind Capital operate?",
+      "expected_answer": "Not stated in the document",
+      "expected_keywords": [],
+      "expected_page": null,
+      "answerable": false
+    },
+    {
+      "id": "q15",
+      "question": "What is the petrol pump financing limit for artisanal businesses?",
+      "expected_answer": "Not stated in the document",
+      "expected_keywords": [],
+      "expected_page": null,
+      "answerable": false
+    },
+    {
+      "id": "q16",
+      "question": "Which sports club does Northwind Capital sponsor?",
+      "expected_answer": "Not stated in the document",
+      "expected_keywords": [],
+      "expected_page": null,
+      "answerable": false
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# Enterprise RAG Assistant - runtime dependencies
+#
+# PyTorch is resolved from the official CPU wheel index so that neither local
+# development nor the Docker image pulls ~2.5 GB of unused CUDA libraries.
+# Remove the --extra-index-url line if you intend to run on a GPU host.
+# ---------------------------------------------------------------------------
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# --- Web layer ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-multipart==0.0.20
+
+# --- Document processing ---
+pymupdf==1.25.1
+
+# --- Embeddings ---
+sentence-transformers==3.3.1
+# Pinned explicitly: sentence-transformers accepts a wide torch range, so
+# without this the CPU wheel is chosen by whatever the resolver happens to pick
+# (verified working: torch 2.14.1+cpu).
+torch==2.14.1
+
+# --- Vector store ---
+chromadb==0.6.3
+# chromadb 0.6.x calls the pre-6.0 posthog API; newer releases log a
+# TypeError on every telemetry event (telemetry itself is disabled in code).
+posthog<6
+
+# --- LLM providers ---
+openai==1.59.6
